@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "139060020687",
+    "firebase_url": "https://pocketreceipt-f6fc6.firebaseio.com",
+    "project_id": "pocketreceipt-f6fc6",
+    "storage_bucket": "pocketreceipt-f6fc6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:139060020687:android:d169d0c50aa30802a47eba",
+        "android_client_info": {
+          "package_name": "com.example.pocketreceipt"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "139060020687-a3jcmrlf18fa1407cmkvs2a358hcmsan.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.pocketreceipt",
+            "certificate_hash": "c4a4ebdda908ec0e8b41e27d765f3b951dc4c106"
+          }
+        },
+        {
+          "client_id": "139060020687-qb1cfnr9m66o8ms4afqh7lcd0ustk0rj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCuZe2d_U1xeAeON60JCyrRmphlTAlhGZ4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "139060020687-qb1cfnr9m66o8ms4afqh7lcd0ustk0rj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

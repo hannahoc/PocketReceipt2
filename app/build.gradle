@@ -1,0 +1,48 @@
+apply plugin: 'com.android.application'
+apply plugin: 'com.google.gms.google-services'
+
+android {
+    compileSdkVersion 28
+    buildToolsVersion '28.0.3'
+    defaultConfig {
+        applicationId "com.example.pocketreceipt"
+        minSdkVersion 17
+        multiDexEnabled true // added due to error
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    implementation 'com.facebook.android:facebook-login:5.13.0'//used for Facebook Login
+    implementation 'de.hdodenhof:circleimageview:3.0.1'//used for Facebook Login
+    implementation 'com.github.bumptech.glide:glide:4.10.0'//used for Facebook Login
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.10.0' //used for Facebook Login
+
+    // Add the Firebase SDK for Google Analytics
+    implementation 'com.google.firebase:firebase-analytics:17.2.3'
+
+    // Add the SDKs for any other Firebase products you want to use in your app
+    // For example, to use Firebase Authentication and Cloud Firestore
+    implementation 'com.google.firebase:firebase-auth:19.3.0'
+    implementation 'com.google.firebase:firebase-firestore:21.4.1'
+    implementation 'com.google.firebase:firebase-database:19.2.1'
+
+    implementation 'com.android.support:multidex:1.0.3' //add due to error
+
+
+}
