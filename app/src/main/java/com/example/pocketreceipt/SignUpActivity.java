@@ -5,116 +5,139 @@ import androidx.appcompat.app.AppCompatActivity;
 
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+
 import android.widget.Toast;
 import android.content.Intent;
 import androidx.annotation.NonNull;
 import android.text.TextUtils;
 
 
+import java.util.HashMap;
+import java.util.Map;
+
 import static com.example.pocketreceipt.R.layout.activity_sign_up;
 
 
 
 public class SignUpActivity extends AppCompatActivity {
-
-    private EditText inputEmail, inputPassword;
-    private Button btnSignIn, btnSignUp, btnResetPassword;
-    private ProgressBar progressBar;
-    private FirebaseAuth auth;
+    public static final String TAG = "TAG";
+    // Declare what fields ive used and assign variable names
+    EditText Email, Password;
+    Button btnSignIn, btnSignUp, btnResetPassword;
+    FirebaseAuth fAuth;
+    ProgressBar progressBar;
+    FirebaseFirestore fStore;
+    String userID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(activity_sign_up);
 
-        //Get Firebase auth instance
-        auth = FirebaseAuth.getInstance();
+        // Initiate each variable by getting them by ID
 
+        Email = findViewById(R.id.email);
+        Password = findViewById(R.id.password);
+        btnSignIn =  (Button) findViewById(R.id.sign_in_button);
+        btnSignUp =  (Button) findViewById(R.id.sign_up_button);
+        btnResetPassword =  (Button) findViewById(R.id.btn_reset_password);
 
-        btnSignIn =  findViewById(R.id.sign_in_button);
-        btnSignUp =  findViewById(R.id.sign_up_button);
-        inputEmail =  findViewById(R.id.email);
-        inputPassword = findViewById(R.id.password);
+        fAuth = FirebaseAuth.getInstance();
+        fStore = FirebaseFirestore.getInstance();
         progressBar = findViewById(R.id.progressBar);
-        btnResetPassword =  findViewById(R.id.btn_reset_password);
 
-        //databaseReference = db.getReference("user");
+        // Check if user is already registered or is a returning user
+        if(fAuth.getCurrentUser() != null){
+            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+            finish();
+        }
 
-        btnResetPassword.setOnClickListener(new View.OnClickListener() {
+        // Register the user if the right username password etc are inputted.
+        btnSignUp.setOnClickListener(new View.OnClickListener(){
             @Override
-            public void onClick(View v) {
-                startActivity(new Intent(SignUpActivity.this, ResetPasswordActivity.class));
+            public void onClick(View v){
+                final String email = Email.getText().toString().trim();
+                String password = Password.getText().toString().trim();
+
+
+                if(TextUtils.isEmpty(email)){
+                    Email.setError("Email Required");
+                    return;
+                }
+                if(TextUtils.isEmpty(password)){
+                    Password.setError("Password required");
+                    return;
+                }
+                if(password.length() < 6){
+                    Password.setError("Password must be at least 6 characters long!!");
+                }
+                /// Make checks for special character and a capital letter in password
+
+                progressBar.setVisibility(View.VISIBLE);
+
+                btnResetPassword.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        startActivity(new Intent(SignUpActivity.this, ResetPasswordActivity.class));
+                    }
+                });
+
+
+                btnSignIn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        startActivity(new Intent(SignUpActivity.this, LoginActivity.class));
+                    }
+                });
+
+                /// Register the user in firebase
+                fAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if(task.isSuccessful()){
+                            Toast.makeText(SignUpActivity.this, "User created successfully", Toast.LENGTH_SHORT).show();
+                            //Store user data by userID in document
+                            userID = fAuth.getCurrentUser().getUid();
+                            DocumentReference documentReference = fStore.collection("users").document(userID);
+                            Map<String, Object> user = new HashMap<>();
+                            // Add in more user info if needed.
+
+                            user.put("Email", email);
+
+                            documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void aVoid) {
+                                    Log.d(TAG, "onSuccess: User profile is created for: " + userID);
+                                }
+                            });
+                            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                        }else{
+                            Toast.makeText(SignUpActivity.this, "Error !" + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
             }
         });
-
 
         btnSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(SignUpActivity.this, LoginActivity.class));
+                startActivity(new Intent(getApplicationContext(), LoginActivity.class));
             }
         });
-
-        btnSignUp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                String email = inputEmail.getText().toString().trim();
-                String password = inputPassword.getText().toString().trim();
-
-                if (TextUtils.isEmpty(email)) {
-                    Toast.makeText(getApplicationContext(), "Enter email address!", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-
-                if (TextUtils.isEmpty(password)) {
-                    Toast.makeText(getApplicationContext(), "Enter password!", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-
-                if (password.length() < 6) {
-                    Toast.makeText(getApplicationContext(), "Password too short, enter minimum 6 characters!", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-
-                progressBar.setVisibility(View.VISIBLE);
-                //create user
-                auth.createUserWithEmailAndPassword(email, password)
-                        .addOnCompleteListener(SignUpActivity.this, new OnCompleteListener<AuthResult>() {
-                            @Override
-                            public void onComplete(@NonNull Task<AuthResult> task) {
-                                Toast.makeText(SignUpActivity.this, "createUserWithEmail:onComplete:" + task.isSuccessful(), Toast.LENGTH_SHORT).show();
-                                progressBar.setVisibility(View.GONE);
-                                // If sign in fails, display a message to the user. If sign in succeeds
-                                // the auth state listener will be notified and logic to handle the
-                                // signed in user can be handled in the listener.
-                                if (!task.isSuccessful()) {
-                                    Toast.makeText(SignUpActivity.this, "Authentication failed." + task.getException(),
-                                            Toast.LENGTH_SHORT).show();
-                                } else {
-                                    startActivity(new Intent(SignUpActivity.this, MenuActivity.class));
-                                    finish();
-                                }
-                            }
-                        });
-
-            }
-        });
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        progressBar.setVisibility(View.GONE);
     }
 }
-
-

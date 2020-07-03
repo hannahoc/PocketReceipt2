@@ -26,14 +26,12 @@
         android:layout_width="334dp"
         android:layout_height="55dp"
         android:hint="@string/email"
-        android:inputType="textEmailAddress"
         android:maxLines="1"
         android:textColor="@android:color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="parent"
-
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.424"
         tools:ignore="Autofill" />
@@ -47,7 +45,6 @@
         android:hint="@string/hint_password"
         android:imeActionId="@+id/login"
         android:imeOptions="actionUnspecified"
-        android:inputType="textPassword"
         android:maxLines="1"
         android:textColor="@android:color/black"
         app:layout_constraintEnd_toEndOf="parent"

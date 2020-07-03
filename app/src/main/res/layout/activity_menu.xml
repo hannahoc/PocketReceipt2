@@ -7,7 +7,7 @@
     tools:context=".MenuActivity">
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/menu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Menu"
@@ -18,21 +18,21 @@
 
 
     <Button
-    android:id="@+id/logout"
-    style="?android:textAppearanceSmall"
-    android:layout_width="274dp"
-    android:layout_height="49dp"
-    android:layout_alignParentBottom="true"
-    android:layout_centerHorizontal="true"
-    android:layout_marginEnd="68dp"
-    android:background="@color/colorPrimary"
-    android:text="@string/logout"
-    android:textColor="@android:color/white"
-    android:textStyle="bold"
-    app:layout_constraintBottom_toBottomOf="parent"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintTop_toTopOf="parent"
-    app:layout_constraintVertical_bias="0.68" />
+        android:id="@+id/logout"
+        style="?android:textAppearanceSmall"
+        android:layout_width="274dp"
+        android:layout_height="49dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginEnd="68dp"
+        android:background="@color/colorPrimary"
+        android:textColor="@android:color/white"
+        android:textStyle="bold"
+        android:text="Signout"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.68" />
 
     <Button
         android:id="@+id/receipt"

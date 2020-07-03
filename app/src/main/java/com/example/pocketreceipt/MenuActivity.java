@@ -9,16 +9,10 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-
-
 public class MenuActivity extends AppCompatActivity {
 
     private Button logout;
     private Button receipt;
-    private FirebaseAuth auth;
 
 
     @Override
@@ -40,17 +34,15 @@ public class MenuActivity extends AppCompatActivity {
 
         logout = (Button) findViewById(R.id.logout);
         logout.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent intent=new Intent(MenuActivity.this, MainActivity.class);
-                    startActivity(intent);
-                    finish();
-                    Toast.makeText(MenuActivity.this, "Successfully Logged out", Toast.LENGTH_SHORT).show();
-                }
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(MenuActivity.this, MainActivity.class);
+                startActivity(intent);
+                finish();
+                Toast.makeText(MenuActivity.this, "Successfully Logged out", Toast.LENGTH_SHORT).show();
+            }
 
         });
     }
 
-    }
-
-
+}
