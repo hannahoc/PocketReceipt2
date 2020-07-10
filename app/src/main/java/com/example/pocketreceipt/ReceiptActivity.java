@@ -7,20 +7,29 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
+
+import java.util.List;
 
 public class ReceiptActivity extends AppCompatActivity {
 
     private RecyclerView mFirestoreList;
     private FirebaseFirestore firebaseFirestore;
-
     private FirestoreRecyclerAdapter adapter;
+
 
 
     @Override
@@ -33,10 +42,13 @@ public class ReceiptActivity extends AppCompatActivity {
         mFirestoreList = findViewById(R.id.firestore_List);
 
 
-        FirebaseFirestore rootRef = FirebaseFirestore.getInstance();
+       FirebaseFirestore rootRef = FirebaseFirestore.getInstance();
         //query
-        Query query = rootRef.collection("users");
+        Query query = rootRef.collection("users")
         // .orderBy("email", Query.Direction.ASCENDING);
+                .document("BtliRhtVFiQntlH2Hp1gvjG59b32")
+                .collection("Receipts");
+
 
         FirestoreRecyclerOptions<ReceiptsModel> options = new FirestoreRecyclerOptions.Builder<ReceiptsModel>()
                 .setQuery(query, ReceiptsModel.class)
@@ -49,13 +61,15 @@ public class ReceiptActivity extends AppCompatActivity {
             @NonNull
             @Override
             public ReceiptViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.receipt_view, parent, false);
+                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_view, parent, false);
                 return new ReceiptViewHolder(view);
             }
 
             @Override
             protected void onBindViewHolder(@NonNull ReceiptViewHolder holder, int position, @NonNull ReceiptsModel model) {
                 holder.view_email.setText(model.getEmail());
+                holder.view_store.setText(model.getStore());
+                holder.view_total.setText(model.getTotal());
             }
         };
 
@@ -67,27 +81,29 @@ public class ReceiptActivity extends AppCompatActivity {
 
     private class ReceiptViewHolder extends RecyclerView.ViewHolder {
 
-        private TextView view_email;
+        private TextView view_email, view_store, view_total;
+
+
 
         public ReceiptViewHolder(@NonNull View itemView) {
             super(itemView);
 
             view_email = itemView.findViewById(R.id.view_email);
+            view_store = itemView.findViewById(R.id.view_store);
+            view_total = itemView.findViewById(R.id.view_total);
         }
     }
 
-        @Override
-        protected void onStop() {
-            super.onStop();
-            adapter.stopListening();
-        }
-
-
-        @Override
-        protected void onStart() {
-            super.onStart();
-            adapter.startListening();
-        }
+    @Override
+    protected void onStop() {
+        super.onStop();
+        adapter.stopListening();
     }
 
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        adapter.startListening();
+    }
+}
