@@ -1,6 +1,8 @@
 package com.example.pocketreceipt;
 
+
 public class ReceiptsModel {
+
 
     private String email;
     private String store;
@@ -9,10 +11,11 @@ public class ReceiptsModel {
 
     private ReceiptsModel() { }
 
-    private ReceiptsModel(String email, String store, String price) {
+    private ReceiptsModel(String email, String store, String total) {
         this.email= email;
         this.store= store;
         this.total= total;
+
 
     }
 
@@ -28,14 +31,16 @@ public class ReceiptsModel {
 
         return total;
     }
+
     public void setEmail(String email) {
         this.email = email;
     }
-    public void setStore(String store) {
-        this.store = store;
-    }
+    public void setStore(String store) { this.store = store; }
     public void setTotal(String total) {
         this.total = total;
     }
+
+
+
 }
 
