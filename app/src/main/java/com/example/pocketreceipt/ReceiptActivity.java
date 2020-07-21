@@ -1,28 +1,20 @@
 package com.example.pocketreceipt;
 
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
+
+import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
+import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
-import com.firebase.ui.firestore.FirestoreRecyclerOptions;
-import android.os.Bundle;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.Query;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
-
-import java.util.List;
 
 public class ReceiptActivity extends AppCompatActivity {
 
@@ -42,10 +34,10 @@ public class ReceiptActivity extends AppCompatActivity {
         mFirestoreList = findViewById(R.id.firestore_List);
 
 
-       FirebaseFirestore rootRef = FirebaseFirestore.getInstance();
+        FirebaseFirestore rootRef = FirebaseFirestore.getInstance();
         //query
         Query query = rootRef.collection("users")
-        // .orderBy("email", Query.Direction.ASCENDING);
+                // .orderBy("email", Query.Direction.ASCENDING);
                 .document("BtliRhtVFiQntlH2Hp1gvjG59b32")
                 .collection("Receipts");
 

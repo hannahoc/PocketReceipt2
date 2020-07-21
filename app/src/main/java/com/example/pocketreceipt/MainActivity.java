@@ -1,64 +1,65 @@
 package com.example.pocketreceipt;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.annotation.SuppressLint;
+import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.util.Pair;
 import android.view.View;
-import android.widget.Button;
+import android.view.WindowManager;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-
+import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Button SignUpBtn;
-    private Button LoginBtn;
-    private FirebaseAuth auth;
-    private TextView eEmail;
+    //HOW LONG THE SPASH SCREEN WILL STAY ON THE PAGE BEFORE GOING TO THE NEXT SCREEN
+    private static int SPLASH_SCREEN = 5000;
 
-
-
-
-
+    //ADDING VARIABLES
+    Animation topAnim, bottomAnim;
+    ImageView image;
+    TextView logo, slogan;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //HIDING THE STATUS BAR
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_main);
-        SignUpBtn = (Button) findViewById(R.id.SignUpBtn);
-        SignUpBtn.setOnClickListener(new View.OnClickListener() {
+
+        //animation
+        topAnim = AnimationUtils.loadAnimation(this, R.anim.top_animation);
+        bottomAnim = AnimationUtils.loadAnimation(this, R.anim.bottom_animation);
+
+        //Hooks
+
+        image = findViewById(R.id.imageView);
+        logo = findViewById(R.id.logo);
+        slogan = findViewById(R.id.slogan);
+
+        image.setAnimation(topAnim);
+        logo.setAnimation(bottomAnim);
+        slogan.setAnimation(bottomAnim);
+
+        //handler the delay process
+        new Handler().postDelayed(new Runnable() {
             @Override
-            public void onClick(View v) {
-                openSignUpActivity();
+            public void run() {
+                Intent intent = new Intent(MainActivity.this,LoginActivity.class);
+                Pair[] pairs = new Pair[2];
+                pairs[0] = new Pair<View,String>(image, "logo_image");
+                pairs[1] = new Pair<View,String>(logo, "logo_text");
+
+                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
+                    ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(MainActivity.this, pairs);
+                    startActivity(intent, options.toBundle());
+                }
+
             }
-        });
-
-
-
-        LoginBtn = (Button) findViewById(R.id.LoginBtn);
-        LoginBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openLoginActivity();
-            }
-        });
-
+        },SPLASH_SCREEN);
     }
-
-
-    private void openLoginActivity() {
-        Intent intent = new Intent(this, LoginActivity.class);
-        startActivity(intent);
-    }
-
-    private void openSignUpActivity() {
-        Intent intent = new Intent(this, SignUpActivity.class);
-        startActivity(intent);
-    }
-
-
 }

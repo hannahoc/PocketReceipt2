@@ -21,6 +21,7 @@
     <string name="btn_send">Send</string>
     <string name="btn_remove">Remove</string>
     <string name="sign_up_button">Sign Out</string>
+    <string name="LoginBtn2">Login</string>
     <string name="logout">Sign Out</string>
     <string name="lbl_forgot_password">Forgot Password</string>
     <string name="forgot_password_msg">Check your Email for Instructions</string>

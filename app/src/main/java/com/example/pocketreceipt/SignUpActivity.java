@@ -1,33 +1,29 @@
 package com.example.pocketreceipt;
 
 
-import androidx.appcompat.app.AppCompatActivity;
-
-
+import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-import android.widget.Toast;
-import android.content.Intent;
-import androidx.annotation.NonNull;
-import android.text.TextUtils;
-
-
 import java.util.HashMap;
 import java.util.Map;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import static com.example.pocketreceipt.R.layout.activity_sign_up;
 
@@ -36,8 +32,8 @@ import static com.example.pocketreceipt.R.layout.activity_sign_up;
 public class SignUpActivity extends AppCompatActivity {
     public static final String TAG = "TAG";
     // Declare what fields ive used and assign variable names
-    EditText Email, Password;
-    Button btnSignIn, btnSignUp, btnResetPassword;
+    TextInputLayout Email, Password, fName;
+    Button btnSignIn, btnSignUp;
     FirebaseAuth fAuth;
     ProgressBar progressBar;
     FirebaseFirestore fStore;
@@ -51,10 +47,11 @@ public class SignUpActivity extends AppCompatActivity {
         // Initiate each variable by getting them by ID
 
         Email = findViewById(R.id.email);
+        fName = findViewById(R.id.fName);
         Password = findViewById(R.id.password);
-        btnSignIn =  (Button) findViewById(R.id.sign_in_button);
-        btnSignUp =  (Button) findViewById(R.id.sign_up_button);
-        btnResetPassword =  (Button) findViewById(R.id.btn_reset_password);
+        btnSignIn =  (Button) findViewById(R.id.btnSignIn);
+        btnSignUp =  (Button) findViewById(R.id.btnSignUp);
+
 
         fAuth = FirebaseAuth.getInstance();
         fStore = FirebaseFirestore.getInstance();
@@ -70,8 +67,10 @@ public class SignUpActivity extends AppCompatActivity {
         btnSignUp.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                final String email = Email.getText().toString().trim();
-                String password = Password.getText().toString().trim();
+               // final String email = Email.getText().toString().trim();
+                String email=Email.getEditText().getText().toString().trim();
+                //String password = Password.getText().toString().trim();
+                String password=Password.getEditText().getText().toString().trim();
 
 
                 if(TextUtils.isEmpty(email)){
@@ -86,16 +85,6 @@ public class SignUpActivity extends AppCompatActivity {
                     Password.setError("Password must be at least 6 characters long!!");
                 }
                 /// Make checks for special character and a capital letter in password
-
-                progressBar.setVisibility(View.VISIBLE);
-
-                btnResetPassword.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        startActivity(new Intent(SignUpActivity.this, ResetPasswordActivity.class));
-                    }
-                });
-
 
                 btnSignIn.setOnClickListener(new View.OnClickListener() {
                     @Override

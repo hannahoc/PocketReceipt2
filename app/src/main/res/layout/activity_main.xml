@@ -4,55 +4,56 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="#b7ded2"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:background="#fece2f">
 
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="634dp"
+        android:layout_height="350dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginEnd="10dp"
+        android:transitionName="logo_image"
+        android:src="@drawable/receipt_logo"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.46"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Welcome"
-        android:textSize="30dp"
-        android:textColor="@android:color/black"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.223" />
-
-    <Button
-        android:id="@+id/LoginBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="15dp"
-        android:textColor="@android:color/white"
-        android:background="#4c4c4c"
-        android:text="Login"
+        android:id="@+id/logo"
+        android:layout_width="395dp"
+        android:layout_height="116dp"
+        android:fontFamily="@font/lobster"
+        android:text="Pocket Receipt"
+        android:transitionName="logo_text"
+        android:textAlignment="center"
+        android:textAllCaps="true"
+        android:textSize="50sp"
+        android:textStyle="italic"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.744"
-        tools:ignore="MissingConstraints" />
+        app:layout_constraintVertical_bias="0.783"
+        tools:ignore="DuplicateIds" />
 
-    <Button
-        android:id="@+id/SignUpBtn"
+    <TextView
+        android:id="@+id/slogan"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Sign Up"
-        android:textColor="@android:color/white"
-        android:background="#4c4c4c"
+        android:fontFamily="@font/average_sans"
+        android:text="Making shopping easier"
+        android:textAlignment="gravity"
+        android:textSize="40sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintHorizontal_bias="0.479"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.592"
-        tools:ignore="MissingConstraints" />
-
+        app:layout_constraintVertical_bias="0.88" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

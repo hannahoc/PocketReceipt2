@@ -1,33 +1,33 @@
 package com.example.pocketreceipt;
 
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
+
 import com.facebook.AccessToken;
+import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
 import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
-import com.facebook.CallbackManager;
-
+import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.Arrays;
+
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 
 public class LoginActivity extends AppCompatActivity {
 
     private CallbackManager callbackManager;
 
 
-    EditText lEmail, lPassword;
-    TextView title3;
-    Button LoginBtn2, btnResetPassword;
+    TextInputLayout uEmail, uPassword;
+    TextView tLogin;
+    Button LoginBtn2, btnResetPassword, SignUpBtn;
 
 
     @Override
@@ -35,15 +35,23 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        lEmail = findViewById(R.id.lEmail);
-        lPassword = findViewById(R.id.lPassword);
-        title3 = findViewById(R.id.title3);
+        uEmail = findViewById(R.id.uEmail);
+        uPassword = findViewById(R.id.uPassword);
+        tLogin = findViewById(R.id.tLogin);
         btnResetPassword =  findViewById(R.id.btn_reset_password);
+        SignUpBtn =  findViewById(R.id.SignUpBtn);
 
         btnResetPassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(LoginActivity.this, ResetPasswordActivity.class));
+            }
+        });
+
+        SignUpBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(LoginActivity.this, SignUpActivity.class));
             }
         });
 
@@ -62,10 +70,7 @@ public class LoginActivity extends AppCompatActivity {
         startActivity(intent);
 
 
-
-
-
-
+//facebook login
         LoginButton loginButton = findViewById(R.id.login_button);
 
         callbackManager = CallbackManager.Factory.create();
