@@ -4,24 +4,24 @@ package com.example.pocketreceipt;
 public class ReceiptsModel {
 
 
-    private String email;
+    private String date;
     private String store;
     private String total;
 
 
     private ReceiptsModel() { }
 
-    private ReceiptsModel(String email, String store, String total) {
-        this.email= email;
+    private ReceiptsModel(String date, String store, String total) {
+        this.date= date;
         this.store= store;
         this.total= total;
 
 
     }
 
-    public String getEmail() {
+    public String getDate() {
 
-        return email;
+        return date;
     }
     public String getStore() {
 
@@ -32,13 +32,9 @@ public class ReceiptsModel {
         return total;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
+    public void setDate(String date) {this.date = date; }
     public void setStore(String store) { this.store = store; }
-    public void setTotal(String total) {
-        this.total = total;
-    }
+    public void setTotal(String total) { this.total = total; }
 
 
 

@@ -59,7 +59,7 @@ public class ReceiptActivity extends AppCompatActivity {
 
             @Override
             protected void onBindViewHolder(@NonNull ReceiptViewHolder holder, int position, @NonNull ReceiptsModel model) {
-                holder.view_email.setText(model.getEmail());
+                holder.view_date.setText(model.getDate());
                 holder.view_store.setText(model.getStore());
                 holder.view_total.setText(model.getTotal());
             }
@@ -73,14 +73,14 @@ public class ReceiptActivity extends AppCompatActivity {
 
     private class ReceiptViewHolder extends RecyclerView.ViewHolder {
 
-        private TextView view_email, view_store, view_total;
+        private TextView view_date, view_store, view_total;
 
 
 
         public ReceiptViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            view_email = itemView.findViewById(R.id.view_email);
+            view_date = itemView.findViewById(R.id.view_date);
             view_store = itemView.findViewById(R.id.view_store);
             view_total = itemView.findViewById(R.id.view_total);
         }

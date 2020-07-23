@@ -39,6 +39,7 @@ dependencies {
     annotationProcessor 'com.github.bumptech.glide:compiler:4.10.0' //used for Facebook Login
     implementation 'com.firebaseui:firebase-ui-firestore:4.1.0' //added
     implementation 'androidx.recyclerview:recyclerview:1.1.0' //added
+    implementation 'com.android.support:cardview-v7:28.0.0' //added
 
     // Add the Firebase SDK for Google Analytics
     implementation 'com.google.firebase:firebase-analytics:17.2.2'
