@@ -1,9 +1,11 @@
 package com.example.pocketreceipt;
 
 import android.os.Bundle;
+import android.widget.Toast;
 
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 
@@ -61,9 +63,18 @@ public class ReceiptActivity extends AppCompatActivity {
             }
         } ).attachToRecyclerView( mFirestoreList );
 
+        adapter.setOnItemClickListener(new ReceiptAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(DocumentSnapshot documentSnapshot, int position) {
+                ReceiptsModel receiptsModel = documentSnapshot.toObject(ReceiptsModel.class);
+                String id = documentSnapshot.getId();
+                String path = documentSnapshot.getReference().getPath();
+                Toast.makeText(ReceiptActivity.this,
+                        "Position: " + position + " ID: " + id, Toast.LENGTH_SHORT).show();
 
+            }
+        });
     }
-
     @Override
     protected void onStop() {
         super.onStop();
