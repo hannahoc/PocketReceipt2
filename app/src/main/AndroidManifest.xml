@@ -14,7 +14,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".DisplayReceipts"></activity>
+        <activity android:name=".DisplayActivity"></activity>
+        <activity android:name=".DisplayReceipts" />
         <activity android:name=".CodeQR" />
         <activity android:name=".SpendingCharts" />
         <activity android:name=".Calendar" />

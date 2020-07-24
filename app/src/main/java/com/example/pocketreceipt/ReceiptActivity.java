@@ -1,7 +1,7 @@
 package com.example.pocketreceipt;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.widget.Toast;
 
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.firebase.firestore.CollectionReference;
@@ -45,12 +45,12 @@ public class ReceiptActivity extends AppCompatActivity {
         //View holder class
 
         adapter = new ReceiptAdapter( options );
-        mFirestoreList  = findViewById( R.id.firestore_List );
+        mFirestoreList = findViewById( R.id.firestore_List );
         mFirestoreList.setHasFixedSize( true );
         mFirestoreList.setLayoutManager( new LinearLayoutManager( this ) );
         mFirestoreList.setAdapter( adapter );
 
-        new ItemTouchHelper( new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT|ItemTouchHelper.RIGHT) {
+        new ItemTouchHelper( new ItemTouchHelper.SimpleCallback( 0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT ) {
             @Override
             public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
                 return false;
@@ -66,14 +66,15 @@ public class ReceiptActivity extends AppCompatActivity {
         adapter.setOnItemClickListener(new ReceiptAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(DocumentSnapshot documentSnapshot, int position) {
-                ReceiptsModel receiptsModel = documentSnapshot.toObject(ReceiptsModel.class);
-                String id = documentSnapshot.getId();
-                String path = documentSnapshot.getReference().getPath();
-                Toast.makeText(ReceiptActivity.this,
-                        "Position: " + position + " ID: " + id, Toast.LENGTH_SHORT).show();
+                ReceiptsModel model = documentSnapshot.toObject(ReceiptsModel.class);
 
+                Intent intent = new Intent(ReceiptActivity.this,DisplayActivity.class);
+                intent.putExtra("date",model.getDate());
+                intent.putExtra("store",model.getStore());
+                intent.putExtra("total",model.getTotal());
+                startActivity(intent);
             }
-        });
+        } );
     }
     @Override
     protected void onStop() {

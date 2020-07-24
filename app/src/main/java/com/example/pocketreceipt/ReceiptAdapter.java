@@ -1,7 +1,5 @@
 package com.example.pocketreceipt;
 
-import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -43,7 +41,7 @@ public class ReceiptAdapter extends FirestoreRecyclerAdapter<ReceiptsModel, Rece
         getSnapshots().getSnapshot( position ).getReference().delete();
     }
 
-    class ReceiptHolder extends RecyclerView.ViewHolder {
+     class ReceiptHolder extends RecyclerView.ViewHolder {
         TextView view_date;
         TextView view_total;
         TextView view_store;
@@ -57,18 +55,15 @@ public class ReceiptAdapter extends FirestoreRecyclerAdapter<ReceiptsModel, Rece
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Context context = v.getContext();
-                    Intent intent = new Intent(context, DisplayReceipts.class);
                     int position = getAdapterPosition();
-                  //  if (position != RecyclerView.NO_POSITION && listener != null) {
-                     //   listener.onItemClick(getSnapshots().getSnapshot(position), position);
-
-                        context.startActivity(intent);
+                    if (position != RecyclerView.NO_POSITION && listener != null) {
+                        listener.onItemClick( getSnapshots().getSnapshot( position ), position );
                     }
-            });
 
+                    }
+                });
+            }
         }
-    }
     public interface OnItemClickListener {
         void onItemClick(DocumentSnapshot documentSnapshot, int position);
 
