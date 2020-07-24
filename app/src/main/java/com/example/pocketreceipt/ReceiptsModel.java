@@ -9,15 +9,15 @@ public class ReceiptsModel {
     private String total;
 
 
+
     private ReceiptsModel() { }
 
     private ReceiptsModel(String date, String store, String total) {
         this.date= date;
         this.store= store;
         this.total= total;
-
-
     }
+
 
     public String getDate() {
 
