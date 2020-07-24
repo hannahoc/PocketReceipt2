@@ -70,6 +70,7 @@ public class ReceiptActivity extends AppCompatActivity {
 
                 Intent intent = new Intent(ReceiptActivity.this,DisplayActivity.class);
                 intent.putExtra("date",model.getDate());
+                intent.putExtra("bed",model.getBed());
                 intent.putExtra("store",model.getStore());
                 intent.putExtra("total",model.getTotal());
                 startActivity(intent);
