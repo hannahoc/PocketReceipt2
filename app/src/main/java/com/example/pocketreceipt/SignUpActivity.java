@@ -57,17 +57,17 @@ public class SignUpActivity extends AppCompatActivity {
         fStore = FirebaseFirestore.getInstance();
         progressBar = findViewById(R.id.progressBar);
 
-        // Check if user is already registered or is a returning user
-        if(fAuth.getCurrentUser() != null){
-            startActivity(new Intent(getApplicationContext(), MainActivity.class));
-            finish();
-        }
+//        // Check if user is already registered or is a returning user
+//        if(fAuth.getCurrentUser() != null){
+//            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+//            finish();
+//        }
 
         // Register the user if the right username password etc are inputted.
         btnSignUp.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-               // final String email = Email.getText().toString().trim();
+                // final String email = Email.getText().toString().trim();
                 String email=Email.getEditText().getText().toString().trim();
                 //String password = Password.getText().toString().trim();
                 String password=Password.getEditText().getText().toString().trim();
@@ -106,6 +106,9 @@ public class SignUpActivity extends AppCompatActivity {
                             // Add in more user info if needed.
 
                             user.put("Email", email);
+                            user.put("Name", fName);
+
+
 
                             documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
                                 @Override
@@ -113,7 +116,7 @@ public class SignUpActivity extends AppCompatActivity {
                                     Log.d(TAG, "onSuccess: User profile is created for: " + userID);
                                 }
                             });
-                            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                            startActivity(new Intent(getApplicationContext(), MenuActivity.class));
                         }else{
                             Toast.makeText(SignUpActivity.this, "Error !" + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                         }
