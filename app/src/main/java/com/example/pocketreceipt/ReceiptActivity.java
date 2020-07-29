@@ -32,12 +32,13 @@ public class ReceiptActivity extends AppCompatActivity {
         mFirestoreList = findViewById(R.id.firestore_List);
         setUpRecyclerView();
     }
-
+//Show Recycler view the path to follow in Firestore to access all receipts and print them out in a cardview
     private void setUpRecyclerView() {
         Query query = receiptRef = db.collection( "users" )
                 .document( "BtliRhtVFiQntlH2Hp1gvjG59b32" )
                 .collection( "Receipts" );
 
+       //
         FirestoreRecyclerOptions<ReceiptsModel> options = new FirestoreRecyclerOptions.Builder<ReceiptsModel>()
                 .setQuery( query, ReceiptsModel.class )
                 .build();

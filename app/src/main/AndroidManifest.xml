@@ -5,22 +5,23 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
 
+
     <dist:module dist:instant="true" />
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/receiptlogonewround"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/receiptlogonewround"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".DisplayActivity"></activity>
-        <activity android:name=".DisplayReceipts" />
+        <activity android:name=".Feedback"/>
+        <activity android:name=".Profile" />
+        <activity android:name=".DisplayActivity" />
         <activity android:name=".CodeQR" />
         <activity android:name=".SpendingCharts" />
         <activity android:name=".Calendar" />
         <activity android:name=".ReceiptActivity" />
-        <activity android:name=".MyProfileActivity" />
         <activity android:name=".ResetPasswordActivity" />
         <activity android:name=".MenuActivity" />
         <activity android:name=".LoginActivity" />

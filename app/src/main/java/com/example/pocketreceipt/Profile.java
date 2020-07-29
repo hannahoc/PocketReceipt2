@@ -49,7 +49,7 @@ public class Profile extends AppCompatActivity {
             @Override
             public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException e) {
                 email.setText(documentSnapshot.getString( "Email" ));
-                fullName.setText(documentSnapshot.getString( "Name" ));
+                fullName.setText(documentSnapshot.getString( "Full Name" ));
                 phone.setText(documentSnapshot.getString( "Phone" ));
             }
         } );

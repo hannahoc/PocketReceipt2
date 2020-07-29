@@ -19,7 +19,7 @@
             android:id="@+id/view_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="email"
+            android:text="date"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             android:maxLines="1"
             android:ellipsize="end" />

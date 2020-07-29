@@ -23,6 +23,6 @@ public class DisplayActivity extends AppCompatActivity {
         bed.setText(getIntent().getStringExtra("bed")+"");
         store.setText(getIntent().getStringExtra("store")+"");
         total.setText(getIntent().getStringExtra("total")+"");
-        
+
     }
 }

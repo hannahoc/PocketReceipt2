@@ -27,17 +27,16 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import static com.example.pocketreceipt.R.layout.activity_sign_up;
 
-
-
 public class SignUpActivity extends AppCompatActivity {
     public static final String TAG = "TAG";
     // Declare what fields ive used and assign variable names
-    TextInputLayout Email, Password, fName;
+    TextInputLayout Email, Password, FullName, Phone;
     Button btnSignIn, btnSignUp;
     FirebaseAuth fAuth;
     ProgressBar progressBar;
     FirebaseFirestore fStore;
     String userID;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +46,8 @@ public class SignUpActivity extends AppCompatActivity {
         // Initiate each variable by getting them by ID
 
         Email = findViewById(R.id.email);
-        fName = findViewById(R.id.fName);
+        FullName = findViewById(R.id.fName);
+        Phone = findViewById(R.id.phone);
         Password = findViewById(R.id.password);
         btnSignIn =  (Button) findViewById(R.id.btnSignIn);
         btnSignUp =  (Button) findViewById(R.id.btnSignUp);
@@ -69,6 +69,8 @@ public class SignUpActivity extends AppCompatActivity {
             public void onClick(View v){
                 // final String email = Email.getText().toString().trim();
                 String email=Email.getEditText().getText().toString().trim();
+                String fName=FullName.getEditText().getText().toString().trim();
+                String phone =Phone.getEditText().getText().toString().trim();
                 //String password = Password.getText().toString().trim();
                 String password=Password.getEditText().getText().toString().trim();
 
@@ -103,12 +105,11 @@ public class SignUpActivity extends AppCompatActivity {
                             userID = fAuth.getCurrentUser().getUid();
                             DocumentReference documentReference = fStore.collection("users").document(userID);
                             Map<String, Object> user = new HashMap<>();
-                            // Add in more user info if needed.
+                            // Adding users email, name and phone number to firestore(will be used later in Profile.java)
 
                             user.put("Email", email);
-                            user.put("Name", fName);
-
-
+                            user.put("Full Name",fName);
+                            user.put("Phone",phone);
 
                             documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
                                 @Override
@@ -132,4 +133,6 @@ public class SignUpActivity extends AppCompatActivity {
             }
         });
     }
+
+
 }

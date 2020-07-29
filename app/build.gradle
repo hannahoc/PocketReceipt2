@@ -49,6 +49,8 @@ dependencies {
     implementation 'com.google.firebase:firebase-auth:19.3.0'
     implementation 'com.google.firebase:firebase-database:19.2.1'
 
+    implementation 'com.google.android.gms:play-services-plus:17.0.0'
+
 
     implementation 'com.android.support:multidex:1.0.3'
     implementation 'androidx.recyclerview:recyclerview:1.0.0'//add due to error
