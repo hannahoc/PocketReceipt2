@@ -16,29 +16,29 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class CodeQR extends AppCompatActivity {
 
-    EditText editText;
-    Button button;
-    ImageView imageView;
+    EditText User_txt;
+    Button generateBtn;
+    ImageView qrImage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_code_q_r);
 
-        editText = (EditText)findViewById(R.id.edittext);
-        button = (Button)findViewById(R.id.button);
-        imageView = (ImageView)findViewById(R.id.imageview);
+        User_txt = (EditText)findViewById(R.id.user_id);
+        generateBtn = (Button)findViewById(R.id.generate_btn);
+        qrImage = (ImageView)findViewById(R.id.imageview);
 
-        button.setOnClickListener(new View.OnClickListener() {
+        generateBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 MultiFormatWriter multiFormatWriter = new MultiFormatWriter();
 
                 try{
-                    BitMatrix bitMatrix = multiFormatWriter.encode(editText.getText().toString(),BarcodeFormat.QR_CODE,500,500);
+                    BitMatrix bitMatrix = multiFormatWriter.encode(User_txt.getText().toString(),BarcodeFormat.QR_CODE,500,500);
                     BarcodeEncoder barcodeEncoder = new BarcodeEncoder();
                     Bitmap bitmap = barcodeEncoder.createBitmap(bitMatrix);
-                    imageView.setImageBitmap(bitmap);
+                    qrImage.setImageBitmap(bitmap);
                 }catch (Exception e){
                     e.printStackTrace();
                 }

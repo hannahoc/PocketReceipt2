@@ -25,7 +25,7 @@ public class Profile extends AppCompatActivity {
     FirebaseAuth fAuth;
     FirebaseFirestore fStore;
     String userID;
-    ImageView profile_pic;
+    ImageView profilePic;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,15 +36,15 @@ public class Profile extends AppCompatActivity {
         email = findViewById( R.id.email_txt );
         phone = findViewById( R.id.phonetxt );
         reset_password = (Button) findViewById( R.id.reset_password );
-        profile_pic = (ImageView) findViewById( R.id.profile_pic );
+        profilePic = (ImageView) findViewById( R.id.profilePic );
 
         fAuth = FirebaseAuth.getInstance();
         fStore = FirebaseFirestore.getInstance();
 
+        //firestore to get current user that is logged in and to follow the User path in Firestore to print out current users
+        // email, full name and phone number
         userID = fAuth.getCurrentUser().getUid();
-
         DocumentReference documentReference = fStore.collection( "users" ).document(userID);
-//                "BtliRhtVFiQntlH2Hp1gvjG59b32");
         documentReference.addSnapshotListener( this, new EventListener<DocumentSnapshot>() {
             @Override
             public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException e) {
@@ -53,7 +53,7 @@ public class Profile extends AppCompatActivity {
                 phone.setText(documentSnapshot.getString( "Phone" ));
             }
         } );
-
+        // restset button links to reset password activity displayed on the login activity
         reset_password.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View v) {

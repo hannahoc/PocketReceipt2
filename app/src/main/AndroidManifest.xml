@@ -4,6 +4,7 @@
     package="com.example.pocketreceipt">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 
 
     <dist:module dist:instant="true" />
@@ -19,7 +20,6 @@
         <activity android:name=".Profile" />
         <activity android:name=".DisplayActivity" />
         <activity android:name=".CodeQR" />
-        <activity android:name=".SpendingCharts" />
         <activity android:name=".Calendar" />
         <activity android:name=".ReceiptActivity" />
         <activity android:name=".ResetPasswordActivity" />
