@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
 xmlns:app="http://schemas.android.com/apk/res-auto"
 xmlns:tools="http://schemas.android.com/tools"
 android:layout_width="match_parent"
@@ -7,27 +7,64 @@ android:layout_height="match_parent"
 android:orientation="vertical"
 tools:context=".CodeQR">
 
-<EditText
-    android:id="@+id/edittext"
-    android:layout_width="match_parent"
-    android:layout_height="104dp"
-    android:hint="Text" />
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="413dp"
+        android:layout_height="160dp"
+        android:layout_weight="1"
+        android:background="@drawable/header_menu"
+        android:gravity="bottom"
+        android:orientation="vertical"
+        android:padding="12dp"
+        tools:ignore="MissingConstraints">
+
+        <TextView
+            android:id="@+id/code_txt"
+            android:layout_width="281dp"
+            android:layout_height="64dp"
+            android:text="QR Code"
+            android:textColor="#000000"
+            android:textSize="30sp" />
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/user_id"
+        android:layout_width="match_parent"
+        android:layout_height="104dp"
+        android:hint="Enter your UserID"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.287" />
+
+    <Button
+        android:id="@+id/generate_btn"
+        android:layout_width="178dp"
+        android:layout_height="84dp"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:text="GET QR Code"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.536"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.459" />
+
+    <ImageView
+        android:id="@+id/imageview"
+        android:layout_width="281dp"
+        android:layout_height="245dp"
+        android:layout_gravity="center"
+        android:background="#ffffff"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.569"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.82" />
 
 
-<Button
-    android:id="@+id/button"
-    android:layout_width="178dp"
-    android:layout_height="80dp"
-    android:gravity="center"
-    android:text="Generate" />
-
-<ImageView
-    android:id="@+id/imageview"
-    android:layout_width="228dp"
-    android:layout_height="221dp"
-    android:layout_gravity="center"
-    android:layout_marginTop="35dp"
-    android:background="#ffffff" />
-
-
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
