@@ -27,18 +27,6 @@ tools:context=".CodeQR">
             android:textSize="30sp" />
     </LinearLayout>
 
-    <EditText
-        android:id="@+id/user_id"
-        android:layout_width="match_parent"
-        android:layout_height="104dp"
-        android:hint="Enter your UserID"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.287" />
-
     <Button
         android:id="@+id/generate_btn"
         android:layout_width="178dp"
@@ -51,7 +39,7 @@ tools:context=".CodeQR">
         app:layout_constraintHorizontal_bias="0.536"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.459" />
+        app:layout_constraintVertical_bias="0.358" />
 
     <ImageView
         android:id="@+id/imageview"
