@@ -1,24 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:orientation="vertical"
+tools:context=".CodeQR">
+
+<EditText
+    android:id="@+id/edittext"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".CodeQR">
-
-    <LinearLayout
-        android:id="@+id/linearLayout2"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:layout_weight="1"
-        android:background="@drawable/header_menu"
-        android:gravity="bottom"
-        android:orientation="vertical"
-        android:padding="12dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        tools:layout_editor_absoluteX="0dp"/>
+    android:layout_height="104dp"
+    android:hint="Text" />
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+<Button
+    android:id="@+id/button"
+    android:layout_width="178dp"
+    android:layout_height="80dp"
+    android:gravity="center"
+    android:text="Generate" />
+
+<ImageView
+    android:id="@+id/imageview"
+    android:layout_width="228dp"
+    android:layout_height="221dp"
+    android:layout_gravity="center"
+    android:layout_marginTop="35dp"
+    android:background="#ffffff" />
+
+
+</LinearLayout>
