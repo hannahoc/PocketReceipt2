@@ -20,7 +20,7 @@ public class ReceiptActivity extends AppCompatActivity {
     private RecyclerView mFirestoreList;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private ReceiptAdapter adapter;
-    private CollectionReference receiptRef = db.collection( "users" )
+    private CollectionReference receiptRef = db.collection( "Receipts" )
             .document( "BtliRhtVFiQntlH2Hp1gvjG59b32" )
             .collection( "Receipts" );
 
@@ -72,9 +72,15 @@ public class ReceiptActivity extends AppCompatActivity {
 
                 Intent intent = new Intent(ReceiptActivity.this,DisplayActivity.class);
                 intent.putExtra("date",model.getDate());
-                intent.putExtra("bed",model.getBed());
+                intent.putExtra("store_location",model.getStore_location());
+                intent.putExtra("store_phone",model.getStore_phone());
+                intent.putExtra("item_1",model.getItem_1());
+                intent.putExtra("item_2",model.getItem_2());
+                intent.putExtra("item_1_price",model.getItem_1_price());
+                intent.putExtra("item_2_price",model.getItem_2_price());
                 intent.putExtra("store",model.getStore());
                 intent.putExtra("total",model.getTotal());
+                intent.putExtra("receiptNo",model.getReceiptNo());
                 startActivity(intent);
             }
         } );

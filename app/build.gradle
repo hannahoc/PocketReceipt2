@@ -55,6 +55,8 @@ dependencies {
     implementation 'com.google.zxing:core:3.2.1'
     implementation 'com.journeyapps:zxing-android-embedded:3.2.0@aar'
 
+    implementation 'com.applandeo:material-calendar-view:1.7.0'
+
 
     implementation 'com.android.support:multidex:1.0.3'
     implementation 'androidx.recyclerview:recyclerview:1.0.0'//add due to error

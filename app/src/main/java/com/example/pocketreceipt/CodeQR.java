@@ -1,3 +1,4 @@
+//https://www.youtube.com/watch?v=yJh22Wk74V8
 package com.example.pocketreceipt;
 
 import android.graphics.Bitmap;
@@ -31,7 +32,7 @@ public class CodeQR extends AppCompatActivity {
         generateBtn.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //you can put a check here for null user
+                //Check for current users UserIf in Firebase and Check here for null users
                 setupUserQRcode( FirebaseAuth.getInstance().getCurrentUser().getUid() );
 
             }
