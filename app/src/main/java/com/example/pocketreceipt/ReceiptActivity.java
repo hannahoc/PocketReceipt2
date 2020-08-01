@@ -16,9 +16,10 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class ReceiptActivity extends AppCompatActivity {
-
+    //declare Firebase variables
     private RecyclerView mFirestoreList;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
+    //Declare my adapter
     private ReceiptAdapter adapter;
     private CollectionReference receiptRef = db.collection( "Receipts" )
             .document( "BtliRhtVFiQntlH2Hp1gvjG59b32" )
@@ -33,19 +34,17 @@ public class ReceiptActivity extends AppCompatActivity {
         setUpRecyclerView();
     }
 
-    //Show Recycler view the path to follow in Firestore to access all receipts and print them out in a cardview
+    //Show Recycler view the path to query in Firestore to access all receipts and print them out in a cardview
     private void setUpRecyclerView() {
         Query query = receiptRef = db.collection( "users" )
                 .document( "BtliRhtVFiQntlH2Hp1gvjG59b32" )
                 .collection( "Receipts" );
-
-        //
+        //pass model class in query
         FirestoreRecyclerOptions<ReceiptsModel> options = new FirestoreRecyclerOptions.Builder<ReceiptsModel>()
                 .setQuery( query, ReceiptsModel.class )
                 .build();
 
         //View holder class
-
         adapter = new ReceiptAdapter( options );
         mFirestoreList = findViewById( R.id.firestore_List );
         mFirestoreList.setHasFixedSize( true );
@@ -64,12 +63,13 @@ public class ReceiptActivity extends AppCompatActivity {
 
             }
         } ).attachToRecyclerView( mFirestoreList );
-
+//set on click listener to tap on receipt list
         adapter.setOnItemClickListener(new ReceiptAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(DocumentSnapshot documentSnapshot, int position) {
                 ReceiptsModel model = documentSnapshot.toObject(ReceiptsModel.class);
 
+                //using intent method to start a new activity and print out the fields related to my receipt layout
                 Intent intent = new Intent(ReceiptActivity.this,DisplayActivity.class);
                 intent.putExtra("date",model.getDate());
                 intent.putExtra("store_location",model.getStore_location());

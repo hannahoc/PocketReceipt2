@@ -2,8 +2,7 @@ package com.example.pocketreceipt;
 
 
 public class ReceiptsModel {
-
-
+    //variables (ensure they are the same as the fields in Firebase)
     private String date;
     private String store;
     private String store_location;
@@ -15,10 +14,10 @@ public class ReceiptsModel {
     private String item_2_price;
     private String receiptNo;
 
-
-
+    // Empty contructor for Firebase
     private ReceiptsModel() { }
 
+    //contructor initialize objects and receive data
     private ReceiptsModel(String date, String store,String store_location,String store_phone, String total,String receiptNo, String item_1, String item_2,String item_1_price,String item_2_price) {
         this.date= date;
         this.item_1= item_1;
@@ -33,7 +32,7 @@ public class ReceiptsModel {
         this.receiptNo= receiptNo;
     }
 
-
+//getters
     public String getDate() {
 
         return date;
@@ -76,7 +75,7 @@ public class ReceiptsModel {
 
         return total;
     }
-
+    //setters
     public void setDate(String date) {this.date = date; }
     public void setStore_location(String store_location) { this.store_location = store_location; }
     public void setStore_phone(String store_phone) { this.store_phone = store_phone; }

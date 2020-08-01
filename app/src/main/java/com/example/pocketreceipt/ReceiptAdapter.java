@@ -18,7 +18,7 @@ public class ReceiptAdapter extends FirestoreRecyclerAdapter<ReceiptsModel, Rece
     public ReceiptAdapter(@NonNull FirestoreRecyclerOptions<ReceiptsModel> options) {
         super( options );
     }
-
+//create view a holder to hold memory of each entry
     @Override
     protected void onBindViewHolder(@NonNull ReceiptHolder holder, int i, @NonNull ReceiptsModel model) {
         holder.view_date.setText(model.getDate());
