@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -15,14 +16,22 @@ import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+
 public class ReceiptActivity extends AppCompatActivity {
     //declare Firebase variables
     private RecyclerView mFirestoreList;
+
+//    private String convertDateToString (Date date) {
+//        //change according to your supported formate
+//        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy" );
+//        return dateFormat.format(date);
+//    }
+    String userID = FirebaseAuth.getInstance().getCurrentUser().getUid();
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     //Declare my adapter
     private ReceiptAdapter adapter;
-    private CollectionReference receiptRef = db.collection( "Receipts" )
-            .document( "BtliRhtVFiQntlH2Hp1gvjG59b32" )
+    private CollectionReference receiptRef = db.collection( "users" )
+            .document( userID )
             .collection( "Receipts" );
 
     @Override
@@ -37,20 +46,21 @@ public class ReceiptActivity extends AppCompatActivity {
     //Show Recycler view the path to query in Firestore to access all receipts and print them out in a cardview
     private void setUpRecyclerView() {
         Query query = receiptRef = db.collection( "users" )
-                .document( "BtliRhtVFiQntlH2Hp1gvjG59b32" )
+                .document( userID )
                 .collection( "Receipts" );
         //pass model class in query
         FirestoreRecyclerOptions<ReceiptsModel> options = new FirestoreRecyclerOptions.Builder<ReceiptsModel>()
                 .setQuery( query, ReceiptsModel.class )
                 .build();
 
-        //View holder class
+
         adapter = new ReceiptAdapter( options );
         mFirestoreList = findViewById( R.id.firestore_List );
         mFirestoreList.setHasFixedSize( true );
-        mFirestoreList.setLayoutManager( new LinearLayoutManager( this ) );
+        mFirestoreList.setLayoutManager( new LinearLayoutManager( this ) );//responsible for aligning single items in the list
         mFirestoreList.setAdapter( adapter );
 
+        //deleting receipt items by swiping either left or right 0 deletes from android and firebase
         new ItemTouchHelper( new ItemTouchHelper.SimpleCallback( 0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT ) {
             @Override
             public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
@@ -73,7 +83,7 @@ public class ReceiptActivity extends AppCompatActivity {
                 Intent intent = new Intent(ReceiptActivity.this,DisplayActivity.class);
                 intent.putExtra("date",model.getDate());
                 intent.putExtra("store_location",model.getStore_location());
-                intent.putExtra("store_phone",model.getStore_phone());
+                intent.putExtra("store_no",model.getStore_no());
                 intent.putExtra("item_1",model.getItem_1());
                 intent.putExtra("item_2",model.getItem_2());
                 intent.putExtra("item_1_price",model.getItem_1_price());

@@ -15,6 +15,12 @@ import androidx.recyclerview.widget.RecyclerView;
 public class ReceiptAdapter extends FirestoreRecyclerAdapter<ReceiptsModel, ReceiptAdapter.ReceiptHolder> {
     private OnItemClickListener listener;
 
+//    private String convertDateToString (Date date) {
+//        //change according to your supported formate
+//        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy" );
+//        return dateFormat.format(date);
+//    }
+
     public ReceiptAdapter(@NonNull FirestoreRecyclerOptions<ReceiptsModel> options) {
         super( options );
     }
@@ -43,7 +49,7 @@ public class ReceiptAdapter extends FirestoreRecyclerAdapter<ReceiptsModel, Rece
         TextView view_total;
         TextView view_store;
 
-
+//creat constructor
         public ReceiptHolder(@NonNull View itemView) {
             super( itemView );
             view_date = itemView.findViewById(R.id.view_date);

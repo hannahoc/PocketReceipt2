@@ -6,6 +6,7 @@ import com.applandeo.materialcalendarview.CalendarView;
 import com.applandeo.materialcalendarview.EventDay;
 import com.applandeo.materialcalendarview.exceptions.OutOfDateRangeException;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -20,9 +21,16 @@ import androidx.appcompat.app.AppCompatActivity;
 
 
 public class Calendar extends AppCompatActivity {
+
+//    private String convertDateToString (Date date) {
+//        //change according to your supported formate
+//        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy" );
+//        return dateFormat.format(date);
+//    }
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
+    String userID = FirebaseAuth.getInstance().getCurrentUser().getUid();
     private CollectionReference receiptRef = db.collection( "users" )
-            .document( "D40pvQ5PuOT6NaiFfQiNN87z8Qb2" )
+            .document( userID )
             .collection( "Receipts" );
 
     @Override
@@ -42,6 +50,7 @@ public class Calendar extends AppCompatActivity {
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                 List<DocumentSnapshot> documents =  queryDocumentSnapshots.getDocuments();
                 List<EventDay> events = new ArrayList<EventDay>( );
+
                 SimpleDateFormat sdf = new SimpleDateFormat( "dd/MM/yyyy" );
                 java.util.Calendar c = java.util.Calendar.getInstance();
 

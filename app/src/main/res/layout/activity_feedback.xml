@@ -17,8 +17,8 @@
         android:transitionName="logo_image" />
 
     <TextView
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:text="To:"
         android:textSize="20dp"
         android:textColor="#000000"
@@ -61,11 +61,12 @@
         android:layout_height="wrap_content"
         android:lines="10"
         android:gravity="start|top"/>
-    
+
     <Button
         android:id="@+id/submitBtn"
         android:textSize="20dp"
         android:layout_width="match_parent"
+        android:background="#fece2f"
         android:layout_height="wrap_content"
         android:text="Submit"/>
 

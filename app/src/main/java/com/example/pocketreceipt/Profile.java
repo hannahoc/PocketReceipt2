@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
@@ -21,7 +22,7 @@ import androidx.appcompat.app.AppCompatActivity;
 public class Profile extends AppCompatActivity {
 
     TextView fullName, email, phone;
-    Button reset_password;
+    Button reset_password, logout;
     FirebaseAuth fAuth;
     FirebaseFirestore fStore;
     String userID;
@@ -36,6 +37,7 @@ public class Profile extends AppCompatActivity {
         email = findViewById( R.id.email_txt );
         phone = findViewById( R.id.phonetxt );
         reset_password = (Button) findViewById( R.id.reset_password );
+        logout = (Button) findViewById( R.id.logout );
         profilePic = (ImageView) findViewById( R.id.profilePic );
 
         fAuth = FirebaseAuth.getInstance();
@@ -44,13 +46,13 @@ public class Profile extends AppCompatActivity {
         //firestore to get current user that is logged in and to follow the User path in Firestore to print out current users
         // email, full name and phone number
         userID = fAuth.getCurrentUser().getUid();
-        DocumentReference documentReference = fStore.collection( "users" ).document(userID);
+        DocumentReference documentReference = fStore.collection( "users" ).document( userID );
         documentReference.addSnapshotListener( this, new EventListener<DocumentSnapshot>() {
             @Override
             public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException e) {
-                email.setText(documentSnapshot.getString( "Email" ));
-                fullName.setText(documentSnapshot.getString( "Full Name" ));
-                phone.setText(documentSnapshot.getString( "Phone" ));
+                email.setText( documentSnapshot.getString( "Email" ) );
+                fullName.setText( documentSnapshot.getString( "Full Name" ) );
+                phone.setText( documentSnapshot.getString( "Phone" ) );
             }
         } );
         // restset button links to reset password activity displayed on the login activity
@@ -61,4 +63,15 @@ public class Profile extends AppCompatActivity {
             }
         } );
     }
-}
+//sign user out
+        public void logout (View view) {
+            Toast.makeText( this, "User logged out", Toast.LENGTH_SHORT ).show();
+            FirebaseAuth.getInstance().signOut();
+            startActivity(new Intent(getApplicationContext(),LoginActivity.class));
+            finish();
+
+        }
+
+
+    }
+

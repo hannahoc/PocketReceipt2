@@ -104,8 +104,23 @@
         android:text="Change Password"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.066"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.891" />
+        app:layout_constraintVertical_bias="0.945" />
+
+    <Button
+        android:id="@+id/logout"
+        android:layout_width="171dp"
+        android:layout_height="52dp"
+        android:background="#fece2f"
+        android:onClick="logout"
+        android:text="logout"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.933"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.945" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

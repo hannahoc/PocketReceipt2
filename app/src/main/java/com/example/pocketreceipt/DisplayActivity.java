@@ -7,7 +7,13 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class DisplayActivity extends AppCompatActivity {
 
-    TextView date,store,store_location,store_phone,total,item_1,item_2, item_1_price,item_2_price,receiptNo;
+//    private String convertDateToString (Date date) {
+//        //change according to your supported formate
+//        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy" );
+//        return dateFormat.format(date);
+//    }
+
+    TextView date,store,store_location,store_no,total,item_1,item_2, item_1_price,item_2_price,receiptNo;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,7 +27,7 @@ public class DisplayActivity extends AppCompatActivity {
         item_2_price = findViewById(R.id.item_2_price);
         store = findViewById(R.id.view_store);
         store_location = findViewById(R.id.store_location);
-        store_phone = findViewById(R.id.store_phone);
+        store_no = findViewById(R.id.store_no);
         total = findViewById(R.id.view_total );
         receiptNo = findViewById(R.id.view_receipt_no );
 
@@ -32,7 +38,7 @@ public class DisplayActivity extends AppCompatActivity {
         item_2_price.setText(getIntent().getStringExtra("item_2_price")+"");
         store.setText(getIntent().getStringExtra("store")+"");
         store_location.setText(getIntent().getStringExtra("store_location")+"");
-        store_phone.setText(getIntent().getStringExtra("store_phone")+"");
+        store_no.setText(getIntent().getStringExtra("store_no")+"");
         total.setText(getIntent().getStringExtra("total")+"");
         receiptNo.setText(getIntent().getStringExtra("receiptNo")+"");
 

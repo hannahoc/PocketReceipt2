@@ -8,8 +8,10 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -25,6 +27,7 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
     DrawerLayout drawerLayout;
     NavigationView navigationView;
     Toolbar toolbar;
+    FirebaseAuth fAuth;
     Menu menu;
 
     @Override
@@ -32,10 +35,6 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate( savedInstanceState );
         setContentView( R.layout.activity_menu );
 
-        // add listener
-//        receipts.setOnClickListener( this );
-//        codeQR.setOnClickListener( this );
-//        calendar.setOnClickListener( this );
 
 
         /*---------------------Hooks------------------------*/
@@ -46,9 +45,11 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
         codeQR = (CardView) findViewById( R.id.codeQR );
         calendar = (CardView) findViewById( R.id.calendar );
 
+        //add onclicklistener to direct dashboard card to correct java
         receipts.setOnClickListener( this );
         codeQR.setOnClickListener( this );
         calendar.setOnClickListener( this );
+
 
         navigationView.bringToFront();
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle( this, drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close );
@@ -92,42 +93,47 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-        @Override
-        public boolean onNavigationItemSelected (@NonNull MenuItem menuItem){
-            switch (menuItem.getItemId()) {
-                case R.id.nav_dash:
-                    break;
-//                case R.id.nav_dash: Intent i = new Intent( MenuActivity.this, MenuActivity.class );
-//                    startActivity( i );
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+        switch (menuItem.getItemId()) {
+//                case R.id.nav_dash:
 //                    break;
-                case R.id.nav_codeQR:
-                    Intent i = new Intent( MenuActivity.this, CodeQR.class );
-                    startActivity( i );
-                    break;
-                case R.id.nav_receipts:
-                    i = new Intent( MenuActivity.this, ReceiptActivity.class );
-                    startActivity( i );
-                    break;
-                case R.id.nav_calendar:
-                    i = new Intent( MenuActivity.this, Calendar.class );
-                    startActivity( i );
-                    break;
-                case R.id.nav_profile:
-                    i = new Intent( MenuActivity.this, Profile.class );
-                    startActivity( i );
-                    break;
-//                case R.id.nav_logout:
-//                    i = new Intent( MenuActivity.this, LoginActivity.class );
-//                    startActivity( i );
-//                    break;
-                case R.id.nav_feedback:
-                    i = new Intent( MenuActivity.this, Feedback.class );
-                    startActivity( i );
-                    break;
-            }
-
-            return true;
+            case R.id.nav_dash:
+                Intent i = new Intent( MenuActivity.this, MenuActivity.class );
+                startActivity( i );
+                break;
+            case R.id.nav_codeQR:
+                i = new Intent( MenuActivity.this, CodeQR.class );
+                startActivity( i );
+                break;
+            case R.id.nav_receipts:
+                i = new Intent( MenuActivity.this, ReceiptActivity.class );
+                startActivity( i );
+                break;
+            case R.id.nav_calendar:
+                i = new Intent( MenuActivity.this, Calendar.class );
+                startActivity( i );
+                break;
+            case R.id.nav_profile:
+                i = new Intent( MenuActivity.this, Profile.class );
+                startActivity( i );
+                break;
+            //sign user out
+            case R.id.nav_logout:
+                Toast.makeText( this, "User logged out", Toast.LENGTH_SHORT ).show();
+                FirebaseAuth.getInstance().signOut();
+                startActivity( new Intent( getApplicationContext(), LoginActivity.class ) );
+                finish();
+                break;
+            case R.id.nav_feedback:
+                i = new Intent( MenuActivity.this, Feedback.class );
+                startActivity( i );
+                break;
         }
+        return true;
+    }
 }
+
+
 
 

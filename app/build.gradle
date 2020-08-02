@@ -25,41 +25,51 @@ android {
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'androidx.appcompat:appcompat:1.1.0'
-    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
-    implementation 'com.google.firebase:firebase-firestore:17.1.2'
-    implementation 'com.google.android.material:material:1.0.0'
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
-    implementation 'com.facebook.android:facebook-login:5.13.0'//used for Facebook Login
-    implementation 'de.hdodenhof:circleimageview:3.0.1'//used for Facebook Login
-    implementation 'com.github.bumptech.glide:glide:4.10.0'//used for Facebook Login
-    annotationProcessor 'com.github.bumptech.glide:compiler:4.10.0' //used for Facebook Login
-    implementation 'com.firebaseui:firebase-ui-firestore:4.1.0' //added
-    implementation 'androidx.recyclerview:recyclerview:1.1.0' //added
-    implementation 'com.android.support:cardview-v7:28.0.0' //added
 
-    // Add the Firebase SDK for Google Analytics
-    implementation 'com.google.firebase:firebase-analytics:17.2.2'
+    dependencies {
+        // Required for local unit tests (JUnit 4 framework)
+        testImplementation 'junit:junit:4.12'
 
-    // Add the SDKs for any other Firebase products you want to use in your app
-    // For example, to use Firebase Authentication and Cloud Firestore
-    implementation 'com.google.firebase:firebase-auth:19.3.0'
-    implementation 'com.google.firebase:firebase-database:19.2.1'
+        // Required for instrumented tests
+        androidTestImplementation 'com.android.support:support-annotations:24.0.0'
+        androidTestImplementation 'com.android.support.test:runner:0.5'
+        implementation fileTree(dir: 'libs', include: ['*.jar'])
+        implementation 'androidx.appcompat:appcompat:1.1.0'
+        implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+        implementation 'com.google.firebase:firebase-firestore:17.1.2'
+        implementation 'com.google.android.material:material:1.0.0'
+        testImplementation 'junit:junit:4.12'
+        androidTestImplementation 'androidx.test.ext:junit:1.1.1'
+        androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+        implementation 'com.facebook.android:facebook-login:5.13.0'//used for Facebook Login
+        implementation 'de.hdodenhof:circleimageview:3.0.1'//used for Facebook Login
+        implementation 'com.github.bumptech.glide:glide:4.10.0'//used for Facebook Login
+        annotationProcessor 'com.github.bumptech.glide:compiler:4.10.0' //used for Facebook Login
+        implementation 'com.firebaseui:firebase-ui-firestore:4.1.0' //added for firestore
+        implementation 'androidx.recyclerview:recyclerview:1.1.0' //added for recyclerview
+        implementation 'com.android.support:cardview-v7:28.0.0'
+        //added for for the recyclerview -display my receipts as list
 
-    implementation 'com.google.android.gms:play-services-plus:17.0.0'
+        // Add the Firebase SDK for Google Analytics
+        implementation 'com.google.firebase:firebase-analytics:17.2.2'
 
-    //QR CODE LIBRARY
-    implementation 'com.google.zxing:core:3.2.1'
-    implementation 'com.journeyapps:zxing-android-embedded:3.2.0@aar'
+        // Add the SDKs for any other Firebase products you want to use in your app
+        // For example, to use Firebase Authentication and Cloud Firestore
+        implementation 'com.google.firebase:firebase-auth:19.3.0' //added firebase authentication
+        implementation 'com.google.firebase:firebase-database:19.2.1' //added for firebase database
 
-    implementation 'com.applandeo:material-calendar-view:1.7.0'
+        implementation 'com.google.android.gms:play-services-plus:17.0.0'
+
+        //QR CODE LIBRARY
+        implementation 'com.google.zxing:core:3.2.1'
+        implementation 'com.journeyapps:zxing-android-embedded:3.2.0@aar'
+        //Calendar depencency
+        implementation 'com.applandeo:material-calendar-view:1.7.0'
 
 
-    implementation 'com.android.support:multidex:1.0.3'
-    implementation 'androidx.recyclerview:recyclerview:1.0.0'//add due to error
+        implementation 'com.android.support:multidex:1.0.3'
+        implementation 'androidx.recyclerview:recyclerview:1.0.0'//add due to error
 
 
+    }
 }
